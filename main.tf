@@ -3,7 +3,6 @@ provider "aws" {
 }
 
 
-
 # SQS Queue for instance termination notifications.
 resource "aws_sqs_queue" "honeypot_queue" {
   name = "honeypot-queue"
@@ -18,11 +17,11 @@ resource "aws_lambda_function" "honeypot_manager" {
   filename      = "lambda_package.zip" # This ZIP package should contain honeypot_manager.py and dependencies.
   environment {
     variables = {
-      MIN_HONEYPOTS     = "3"
-      INCLUDED_REGIONS  = "us-east-1,us-west-2"
-      EXCLUDED_REGIONS  = ""
-      SQS_QUEUE_URL     = aws_sqs_queue.honeypot_queue.id
-      S3_BUCKET         = "your-s3-bucket-name"
+      MIN_HONEYPOTS    = "3"
+      INCLUDED_REGIONS = "us-east-1,us-west-2"
+      EXCLUDED_REGIONS = ""
+      SQS_QUEUE_URL    = aws_sqs_queue.honeypot_queue.id
+      S3_BUCKET        = "your-s3-bucket-name"
     }
   }
 }

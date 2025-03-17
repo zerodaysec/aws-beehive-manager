@@ -91,7 +91,7 @@ def deploy_honeypots():
             'ImageId': 'ami-xxxxxxxx',  # Replace with the correct AMI ID.
             'InstanceType': 't3.micro',
             'IamInstanceProfile': {'Name': 'honeypot-instance-profile'},
-            'UserData': '#!/bin/bash\necho "Honeypot instance launched"',
+            'UserData': '#!/bin/bash\necho "Honeypot instance launched"', # FIXME pull from S3s
             # Adding tag specifications so that the launched instance is tagged with application=honeypot.
             'TagSpecifications': [{
                 'ResourceType': 'instance',
